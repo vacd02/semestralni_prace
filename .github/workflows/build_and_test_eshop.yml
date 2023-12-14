@@ -109,10 +109,12 @@ jobs:
 
       - name: Set up AWS credentials
         run: |
+          mkdir -p ~/.aws
           echo "[default]" > ~/.aws/credentials
           echo "aws_access_key_id=${{ secrets.ACCESS_KEY }}" >> ~/.aws/credentials
           echo "aws_secret_access_key=${{ secrets.SECRET_ACCESS }}" >> ~/.aws/credentials
           echo "aws_session_token=${{ secrets.SESSION_TOKEN }}" >> ~/.aws/credentials
+
 
       - name: Run Ansible playbook
         run: ansible-playbook ./ansible/playbook.yml
