@@ -115,6 +115,9 @@ jobs:
           echo "aws_secret_access_key=${{ secrets.SECRET_ACCESS }}" >> ~/.aws/credentials
           echo "aws_session_token=${{ secrets.SESSION_TOKEN }}" >> ~/.aws/credentials
 
-
       - name: Run Ansible playbook
-        run: ansible-playbook ./ansible/playbook.yml
+        run: |
+          echo "${{secrets.KEY_PEM}}" > SP_key.pem
+          chmod 400 SP_key.pem
+          sudo ansible-playbook ansible/playbook.yml --user ec2-user --key-file SP_key.pem -e "access_key=${ACCESS_KEY}" -e "secret_key=${SECRET_ACCESS}" -e "session_token=${SESSION_TOKEN}"
+          rm ansible.pem
