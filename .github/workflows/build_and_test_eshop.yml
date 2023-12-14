@@ -102,9 +102,11 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install Ansible
-        run: sudo pip3 install ansible
-             sudo pip3 install boto3 boto
+      - name: Install Ansible and Boto + Boto3
+        run: |
+          sudo pip3 install ansible
+          sudo pip3 install boto3 boto
+
 
       - name: Set up AWS credentials
         run: |
