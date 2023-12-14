@@ -107,7 +107,6 @@ jobs:
           sudo pip3 install ansible
           sudo pip3 install boto3 boto
 
-
       - name: Set up AWS credentials
         run: |
           mkdir -p ~/.aws
@@ -118,7 +117,7 @@ jobs:
 
       - name: Run Ansible playbook
         run: |
-          echo "${{secrets.KEY_PEM}}" > SP_key.pem
+          echo "${{ secrets.KEY_PEM }}" > SP_key.pem
           chmod 400 SP_key.pem
-          sudo ansible-playbook ansible/playbook.yml --user ec2-user --key-file SP_key.pem -e "access_key=${ACCESS_KEY}" -e "secret_key=${SECRET_ACCESS}" -e "session_token=${SESSION_TOKEN}"
-          rm ansible.pem
+          sudo ansible-playbook ansible/playbook.yml --user ec2-user --key-file SP_key.pem -e "access_key=${{ secrets.ACCESS_KEY }}" -e "secret_key=${{ secrets.SECRET_ACCESS }}" -e "session_token=${{ secrets.SESSION_TOKEN }}"
+          rm SP_key.pem
