@@ -104,6 +104,7 @@ jobs:
 
       - name: Install Ansible
         run: sudo pip3 install ansible
+             sudo pip3 install boto3 boto
 
       - name: Set up AWS credentials
         run: |
