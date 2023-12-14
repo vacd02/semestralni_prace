@@ -67,7 +67,7 @@
       docker_image:
         build:
           path: .
-          dockerfile: apps/Dockerfile
+          dockerfile: Dockerfile
         name: myeshop
         tag: latest
         source: build
