@@ -90,3 +90,29 @@ jobs:
       - name: Run tests
         run: |
           npm run test -- --colors
+  Deploy:
+    needs: [Test,Build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Ansible
+        run: |
+          python -m pip install --upgrade pip
+          pip install ansible
+
+      - name: Set up AWS credentials
+        run: |
+          echo "[default]" > ~/.aws/credentials
+          echo "aws_access_key_id=${{ secrets.ACCESS_KEY }}" >> ~/.aws/credentials
+          echo "aws_secret_access_key=${{ secrets.SECRET_ACCESS }}" >> ~/.aws/credentials
+          echo "aws_session_token=${{ secrets.SESSION_TOKEN }}" >> ~/.aws/credentials
+
+      - name: Run Ansible playbook
+        run: ansible-playbook ./ansible/playbook.yml
