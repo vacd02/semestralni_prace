@@ -14,7 +14,7 @@
             assign_public_ip: yes
         wait: yes
         count: 1
-        security_group: eshop
+        security_group: sg-003aee501ecc6c297
         aws_access_key: "{{ access_key }}"
         aws_secret_key: "{{ secret_key }}"
         security_token: "{{ session_token }}"
