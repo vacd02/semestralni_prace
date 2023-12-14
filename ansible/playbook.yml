@@ -8,7 +8,7 @@
         instance_type: t2.medium
         image_id: ami-0230bd60aa48260c6
         region: us-east-1
-        key_name: ansible
+        key_name: semestralni_prace_instance
         vpc_subnet_id: subnet-0a52d35df96d3720a
         network:
             assign_public_ip: yes
