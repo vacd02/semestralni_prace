@@ -33,9 +33,11 @@
         timeout: 300
       loop: "{{ ec2_instance_result.instances }}"
 
-- name: Configure EC2
-  hosts: launched
-  connection: ssh
+    - name: Configure EC2 Instance
+      hosts: launched
+      connection: ssh
+        vars:
+          ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
 
   tasks:
     - name: Install Git and Docker
