@@ -71,7 +71,7 @@
     - name: Build an image and push it to a private repo
       docker_image:
         build:
-          path: ./
+          path: ../
           dockerfile: Dockerfile
         name: myeshop:latest
         tag: latest
