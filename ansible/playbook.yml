@@ -73,7 +73,7 @@
         build:
           path: .
           dockerfile: Dockerfile
-        name: myeshop
+        name: myeshop:latest
         tag: latest
         source: build
         
