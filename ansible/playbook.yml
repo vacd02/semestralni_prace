@@ -76,9 +76,9 @@
         build:
           path: "./"
           dockerfile: "Dockerfile"
-      name: myeshop:latest
-      tag: latest
-      source: build
+        name: myeshop:latest
+        tag: latest
+        source: build
         
     - name: Run Docker with eshop
       shell: docker container run -p 80:3000 myeshop
