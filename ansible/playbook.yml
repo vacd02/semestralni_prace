@@ -68,11 +68,14 @@
         repo: 'https://github.com/vacd02/semestralni_prace.git'
         dest: ./app
         
+    - name: Change working directory
+      command: cd ..
+
     - name: Build an image and push it to a private repo
       docker_image:
         build:
-          path: ../
-          dockerfile: Dockerfile
+          path: "./"
+          dockerfile: "Dockerfile"
         name: myeshop:latest
         tag: latest
         source: build
