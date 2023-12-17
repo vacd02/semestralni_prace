@@ -27,7 +27,7 @@
       loop: "{{ ec2_instance_result.instances }}"
 
     - name: Wait for SSH connection
-      delegate_to: "{{ item.public_dns_name }}"
+      delegate_to: "{{ item.public_ip_address }}"
       wait_for_connection:
         delay: 60
         timeout: 360
