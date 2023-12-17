@@ -109,11 +109,11 @@ jobs:
 
       - name: Deploy Ansible
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_KEY }}
-          AWS_SESSION_TOKEN: ${{ secrets.SESSION_TOKEN }}
+          ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          SESSION_TOKEN: ${{ secrets.SESSION_TOKEN }}
         run: |
           echo "${{secrets.KEY_PEM}}" > SP_key.pem
           chmod 400 SP_key.pem
           sudo ansible-playbook ansible/playbook.yml --user ec2-user --key-file ansible.pem -e "access_key=${ACCESS_KEY}" -e "secret_key=${SECRET_KEY}" -e "session_token=${SESSION_TOKEN}"
-          rm ansible.pem
+          rm SP_key.pem
