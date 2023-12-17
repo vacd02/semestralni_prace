@@ -68,17 +68,12 @@
         repo: 'https://github.com/vacd02/semestralni_prace.git'
         dest: ./app
         
-    - name: Build an image and push it to a private repo
-      docker_image:
-        build:
-          path: "../Dockerfile"
-          dockerfile: "Dockerfile"
-        name: myeshop:latest
-        tag: latest
-        source: build
-        
-    - name: Run Docker with eshop
-      shell: docker container run -p 80:3000 myeshop
+    - name: Build eShop Docker
+      shell: cd app && docker build -t myeshop:latest .
+      become: yes
+
+    - name: Run eShop Docker
+      shell: docker run -p 80:3000 myeshop
       async: 45
       poll: 0
       become: yes
